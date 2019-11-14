@@ -1,0 +1,2 @@
+# meta-core
+Core metadata 
