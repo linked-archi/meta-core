@@ -1,0 +1,191 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix arch: <https://meta.linked.archi/core-tax#> .
+
+
+
+arch:ArchComponent a skos:Concept ;
+    rdfs:label "ArchComponent" ;
+    skos:prefLabel "ArchComponent"@en ;
+    .
+
+arch:LogicalComponent a skos:Concept ;
+    rdfs:label "LogicalComponent" ;
+    skos:prefLabel "LogicalComponent"@en ;
+    skos:broader arch:ArchComponent
+    .
+
+arch:PhysicalComponent a skos:Concept ;
+    rdfs:label "PhysicalComponent" ;
+    skos:prefLabel "PhysicalComponent"@en ;
+    skos:broader arch:ArchComponent
+    .
+
+arch:BusinessComponent a skos:Concept ;
+    rdfs:label "BusinessComponent" ;
+    skos:prefLabel "BusinessComponent"@en ;
+    skos:broader arch:ArchComponent
+    .
+
+arch:SoftwareComponent a skos:Concept ;
+    rdfs:label "SoftwareComponent" ;
+    skos:prefLabel "SoftwareComponent"@en ;
+    skos:broader arch:ArchComponent
+    .
+
+arch:HardwareComponent a skos:Concept ;
+    rdfs:label "HardwareComponent" ;
+    skos:prefLabel "HardwareComponent"@en ;
+    skos:broader arch:ArchComponent
+    .
+
+arch:CloudComponent a skos:Concept ;
+    rdfs:label "CloudComponent" ;
+    skos:prefLabel "CloudComponent"@en ;
+    skos:broader arch:ArchComponent
+    .
+
+arch:SaaSComponent a skos:Concept ;
+    rdfs:label "SaaSComponent" ;
+    skos:prefLabel "SaaSComponent"@en ;
+    skos:broader arch:CloudComponent
+    .
+
+arch:PaaSComponent a skos:Concept ;
+    rdfs:label "PaaSComponent" ;
+    skos:prefLabel "PaaSComponent"@en ;
+    skos:broader arch:CloudComponent
+    .
+
+arch:IaaSComponent a skos:Concept ;
+    rdfs:label "IaaSComponent" ;
+    skos:prefLabel "IaaSComponent"@en ;
+    skos:broader arch:CloudComponent
+    .
+
+###########
+
+arch:Compute a skos:Concept ;
+    rdfs:label "Compute" ;
+    skos:prefLabel "Compute"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:AI_ML a skos:Concept ;
+    rdfs:label "AI + Machine Learning" ;
+    skos:prefLabel "AI + Machine Learning"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Analytics a skos:Concept ;
+    rdfs:label "Analytics" ;
+    skos:prefLabel "Analytics"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Blockchain a skos:Concept ;
+    rdfs:label "Blockchain" ;
+    skos:prefLabel "Blockchain"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Containers a skos:Concept ;
+    rdfs:label "Containers" ;
+    skos:prefLabel "Containers"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Databases a skos:Concept ;
+    rdfs:label "Databases" ;
+    skos:prefLabel "Databases"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:DeveloperTools a skos:Concept ;
+    rdfs:label "Developer Tools" ;
+    skos:prefLabel "Developer Tools"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:DevOps a skos:Concept ;
+    rdfs:label "DevOps" ;
+    skos:prefLabel "DevOps"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Identity a skos:Concept ;
+    rdfs:label "Identity" ;
+    skos:prefLabel "Identity"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Integration a skos:Concept ;
+    rdfs:label "Integration" ;
+    skos:prefLabel "Integration"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:IoT a skos:Concept ;
+    rdfs:label "Internet of Things" ;
+    skos:prefLabel "Internet of Things"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:ManagementandGovernance a skos:Concept ;
+    rdfs:label "Management and Governance" ;
+    skos:prefLabel "Management and Governance"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Media a skos:Concept ;
+    rdfs:label "Media" ;
+    skos:prefLabel "Media"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Migration a skos:Concept ;
+    rdfs:label "Migration" ;
+    skos:prefLabel "Migration"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:MixedReality a skos:Concept ;
+    rdfs:label "Mixed Reality" ;
+    skos:prefLabel "Mixed Reality"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Mobile a skos:Concept ;
+    rdfs:label "Mobile" ;
+    skos:prefLabel "Mobile"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Networking a skos:Concept ;
+    rdfs:label "Networking" ;
+    skos:prefLabel "Networking"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Security a skos:Concept ;
+    rdfs:label "Security" ;
+    skos:prefLabel "Security"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Storage a skos:Concept ;
+    rdfs:label "Storage" ;
+    skos:prefLabel "Storage"@en ;
+    skos:broader arch:TechComponent
+    .
+
+arch:Web a skos:Concept ;
+    rdfs:label "Web" ;
+    skos:prefLabel "Web"@en ;
+    skos:broader arch:TechComponent
+    .

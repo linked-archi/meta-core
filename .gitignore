@@ -1,0 +1,10 @@
+.idea
+*.iml
+out
+.out
+out_*
+gen
+ext
+tst
+*_logs
+tools

@@ -1,0 +1,188 @@
+@prefix owl:      <http://www.w3.org/2002/07/owl#> .
+@prefix adms:     <http://www.w3.org/ns/adms#> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+@prefix dc:       <http://purl.org/dc/elements/1.1/> .
+@prefix cc:       <http://creativecommons.org/ns#> .
+@prefix xsd:      <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:     <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:      <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos:     <http://www.w3.org/2004/02/skos/core#> .
+@prefix arch:     <https://meta.linked.archi/core#> .
+@prefix arch-vis: <https://meta.linked.archi/core-vis#> .
+@prefix schema:   <http://schema.org/> .
+
+<https://meta.linked.archi/core-vis#>
+    rdf:type        owl:Ontology ;
+    cc:license      <http://creativecommons.org/licenses/by-sa/3.0/> ;
+    cc:license      "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License."@en ;
+    dc:creator      "Kalin Maldzhanski"^^xsd:string ;
+    dc:description  "Base Ontology EA modeling."@en ;
+    dc:issued       "2019-03-17"^^xsd:date ;
+    dc:modified     "2019-09-18"^^xsd:date ;
+    dc:publisher    <https://linked.archi> ;
+    dc:publisher    "Linked.Archi"@en ;
+    dc:title        "Core Linked.Archi Ontology for Diagrams"@en ;
+    rdfs:comment    "Version 0.1: Initial"@en ;
+    owl:versionInfo 0.1 ;
+.
+# Common classes and properties for visual modeling and diagrams
+
+arch-vis:DiagElement
+    a          owl:Class ;
+    rdfs:label "DiahElement"@en ;
+    rdfs:comment "Diagram "@en ;
+.
+
+arch-vis:Node
+    a          owl:Class ;
+    rdfs:subClassOf arch-vis:DiagElement ;
+    rdfs:label "Node"@en
+.
+
+arch-vis:ContainerNode
+    a               owl:Class ;
+    rdfs:subClassOf arch-vis:Node ;
+    rdfs:label      "Container"@en ;
+    rdfs:comment ""@en ;
+
+.
+
+arch-vis:LabelNode
+    a               owl:Class ;
+    rdfs:subClassOf arch-vis:Node ;
+    rdfs:label      "LabelNode"@en ;
+    rdfs:comment ""@en ;
+.
+
+arch-vis:ArchNode
+    a               owl:Class ;
+    rdfs:subClassOf arch-vis:Node ;
+    rdfs:label      "ArchNode"@en ;
+    rdfs:comment ""@en ;
+
+.
+
+arch-vis:Link
+    a          owl:Class ;
+    rdfs:subClassOf arch-vis:DiagElement ;
+    rdfs:label "Link"@en ;
+    rdfs:comment ""@en ;
+.
+
+arch-vis:Point
+    a          owl:Class ;
+    rdfs:label "Point"@en ;
+    rdfs:comment ""@en ;
+.
+
+arch-vis:PointList
+    a               owl:Class ;
+    rdfs:comment    "List of points"@en ;
+    rdfs:label      "List of points"@en ;
+    rdfs:subClassOf [ a                  owl:Class ;
+                      owl:intersectionOf ( rdf:List
+                                           [ a                 owl:Restriction ;
+                                             owl:allValuesFrom arch-vis:Point ;
+                                             owl:onProperty    rdf:first ]
+                                           [ a                 owl:Restriction ;
+                                             owl:allValuesFrom arch-vis:PointList ;
+                                             owl:onProperty    rdf:rest ] ) ] .
+
+arch-vis:bounds-x
+    a           owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label   ""@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Node ;
+    rdfs:range  xsd:double ;
+.
+
+
+arch-vis:bounds-y
+    a           owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label   ""@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Node ;
+    rdfs:range  xsd:double ;
+.
+
+arch-vis:bounds-w
+    a           owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label   ""@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Node ;
+    rdfs:range  xsd:double ;
+.
+
+
+arch-vis:bounds-h
+    a           owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label   ""@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Node ;
+    rdfs:range  xsd:double ;
+.
+
+arch-vis:point-x
+    a           owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label   ""@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Point ;
+    rdfs:range  xsd:double ;
+.
+
+arch-vis:point-y
+    a           owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:label   ""@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Point ;
+    rdfs:range  xsd:double ;
+.
+
+arch-vis:points
+    a            owl:ObjectProperty ;
+    rdfs:label   "points"@en ;
+    rdfs:comment "The ordered list of points"@en ;
+    rdfs:domain  arch-vis:Link ;
+    rdfs:range   arch-vis:PointList ;
+.
+
+arch-vis:label
+    a            owl:ObjectProperty ;
+    rdfs:label   "points"@en ;
+    rdfs:comment "The ordered list of points"@en ;
+    rdfs:domain  arch-vis:Node ;
+    rdfs:range   arch-vis:LabelNode
+.
+
+arch-vis:archElement
+    a           owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label   "archElement"@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:ArchNode ;
+    rdfs:range  arch:Element ;
+.
+
+
+arch-vis:archRelationship
+    a           owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label   "archRelationship"@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Link ;
+    rdfs:range  arch:Relationship ;
+.
+
+arch-vis:source
+    a           owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label   "source"@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Link ;
+    rdfs:range  arch-vis:Node ;
+.
+
+arch-vis:target
+    a           owl:ObjectProperty, owl:FunctionalProperty ;
+    rdfs:label   "target"@en ;
+    rdfs:comment ""@en ;
+    rdfs:domain arch-vis:Link ;
+    rdfs:range  arch-vis:Node ;
+.

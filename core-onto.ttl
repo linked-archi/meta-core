@@ -1,0 +1,189 @@
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix adms:    <http://www.w3.org/ns/adms#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix cc:      <http://creativecommons.org/ns#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix arch:    <https://meta.linked.archi/core#> .
+@prefix schema:  <http://schema.org/> .
+
+<https://meta.linked.archi/core#>
+    rdf:type        owl:Ontology ;
+    cc:license      <http://creativecommons.org/licenses/by-sa/3.0/> ;
+    cc:license      "This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License."@en ;
+    dc:creator      "Kalin Maldzhanski"^^xsd:string ;
+    dc:description  "Base Ontology EA modeling."@en ;
+    dc:issued       "2019-03-17"^^xsd:date ;
+    dc:modified     "2019-09-18"^^xsd:date ;
+    dc:publisher    <https://linked.archi> ;
+    dc:publisher    "Linked.Archi"@en ;
+    dc:title        "Core Linked.Archi Ontology"@en ;
+    rdfs:comment    "Version 0.1: Initial"@en ;
+    owl:versionInfo 0.1 ;
+.
+# Common classes for modeling and diagramsss
+
+arch:Concept
+    a          owl:Class ;
+    rdfs:label "Concept"
+.
+
+arch:Element
+    a               owl:Class ;
+    rdfs:subClassOf arch:Concept ;
+    rdfs:label      "Element"
+.
+
+arch:Relationship
+    a               owl:Class ;
+    rdfs:subClassOf arch:Concept ;
+    rdfs:subClassOf rdf:Statement ;
+    rdfs:subClassOf [ a              owl:Restriction ;
+                      owl:onProperty rdf:predicate ;
+                      owl:hasValue   arch:RelType ] ;
+    rdfs:label      "Relationship" ;
+    rdfs:comment
+                    "used to describe directed relationship between Elements source and sink should be mapped to subject and object of the statement"
+.
+
+arch:RelationshipPreference
+    a          owl:Class ;
+    rdfs:label "RelationshipPreference"
+.
+
+arch:Viewpoint
+    a          owl:Class ;
+    rdfs:label "Viewpoint" ;
+    rdfs:comment
+               "Architecture Viewpoint is a specification of the conventions for a particular kind of architecture view. It can also be called the definition or schema for that kind of architecture view. It establishes the conventions for constructing, interpreting, and using an architecture view to address a specific concern (or set of concerns) about a system-of-interest"
+.
+
+arch:View
+    a          owl:Class ;
+    rdfs:label "View" ;
+    rdfs:comment
+               "Architecture View is a representation of a system from the perspective of a related set of concerns. It consists of one or more architecture models of the system" ;
+.
+
+arch:Catalog
+    a               owl:Class ;
+    rdfs:subClassOf arch:View ;
+    rdfs:label      "Catalog" ;
+    rdfs:comment
+                    "Catalog is a list of building blocks of a specific type, or of related types, that are used for governance or reference purposes (for example, an organization chart, showing locations and actors). As with building blocks, catalogs carry metadata according to the metamodel, which supports query and analysis." ;
+.
+
+arch:Matrix
+    a               owl:Class ;
+    rdfs:subClassOf arch:View ;
+    rdfs:label      "Matrix" ;
+    rdfs:comment
+                    "Matrix is a grid that shows relationships between two or more model entities. Matrices are used to represent relationships that are list-based rather than graphical in their usage (for example, a CRUD matrix showing which applications Create, Read, Update, and Delete a particular type of data is difficult to represent visually)." ;
+.
+
+arch:Diagram
+    a               owl:Class ;
+    rdfs:subClassOf arch:View ;
+    rdfs:label      "Diagram" ;
+    rdfs:comment
+                    "Diagrams are renderings of architectural content in a graphical format to allow stakeholders to retrieve the required information. Diagrams can also be used as a technique for graphically populating architecture content or for checking the completeness of information that has been collected. The TOGAF content framework defines a set of architecture diagrams to be created (e.g., organization chart). Each of these diagrams may be created several times for an architecture with different style or content coverage to suit stakeholder concerns." ;
+.
+
+### Properties
+
+arch:specURL
+    a                  owl:AnnotationProperty, owl:ObjectProperty ;
+    rdfs:subPropertyOf schema:url ;
+    rdfs:label         "The URL of the official specification"@en ;
+    rdfs:domain        arch:Concept ;
+.
+
+arch:viewpoint
+    a           owl:ObjectProperty ;
+    rdfs:label  "viewpoint"@en ;
+    rdfs:domain arch:View ;
+    rdfs:range  arch:Viewpoint ;
+.
+
+arch:stakeholder
+    a           owl:AnnotationProperty ;
+    rdfs:label  "stakeholder"@en ;
+    rdfs:domain arch:Viewpoint ;
+.
+
+arch:concern
+    a           owl:AnnotationProperty ;
+    rdfs:label  "concern"@en ;
+    rdfs:domain arch:Viewpoint ;
+.
+
+arch:purpose
+    a           owl:AnnotationProperty ;
+    rdfs:label  "purpose"@en ;
+    rdfs:domain arch:Viewpoint ;
+.
+
+arch:technique
+    a           owl:AnnotationProperty ;
+    rdfs:label  "technique"@en ;
+    rdfs:domain arch:Viewpoint ;
+.
+
+# used to extend for custom relations
+# and those should be used as rdf:predicate in statements - arch:Relation
+
+arch:RelType
+    a               owl:Class ;
+    rdfs:subClassOf rdf:Property ;
+    rdfs:label      "relationType"@en ;
+.
+
+arch:preferenceSource
+    a           owl:ObjectProperty ;
+    rdfs:label  "preferenceSource" ;
+    rdfs:domain arch:RelationshipPreference ;
+    rdfs:range  arch:Concept
+.
+
+arch:preferenceSink
+    a           owl:ObjectProperty ;
+    rdfs:label  "preferenceSink" ;
+    rdfs:domain arch:RelationshipPreference ;
+    rdfs:range  arch:Concept
+.
+
+arch:preferencePriority
+    a           owl:DatatypeProperty ;
+    rdfs:label  "preferencePriority" ;
+    rdfs:domain arch:RelationshipPreference ;
+    rdfs:range  xsd:integer
+.
+
+arch:preferredRelationship
+    a           owl:ObjectProperty ;
+    rdfs:label  "preferredRelationship" ;
+    rdfs:domain arch:RelationshipPreference ;
+    rdfs:range  arch:RelType
+.
+
+
+arch:altVisNotation
+    a                  owl:AnnotationProperty ;
+    rdfs:comment       "A resource can have more than one value of arch:altVisNotation"@en ;
+    rdfs:label         "alternative Visual Notation"@en ;
+    skos:definition    "An alternative Visual Notation for a resource."@en ;
+    rdfs:subPropertyOf schema:image ;
+    rdfs:domain        arch:Concept ;
+.
+
+arch:prefVisNotation
+    a                  owl:AnnotationProperty ;
+    rdfs:comment       "A resource has no more than one value of arch:prefVisNotation"@en ;
+    rdfs:label         "preferred Visual Notation"@en ;
+    skos:definition    "The preferred Visual Notation for a resource,."@en ;
+    rdfs:subPropertyOf schema:image ;
+    rdfs:domain        arch:Concept ;
+.
