@@ -40,10 +40,6 @@ arch:Element
 arch:Relationship
     a               owl:Class ;
     rdfs:subClassOf arch:Concept ;
-    rdfs:subClassOf rdf:Statement ;
-    rdfs:subClassOf [ a              owl:Restriction ;
-                      owl:onProperty rdf:predicate ;
-                      owl:hasValue   arch:RelType ] ;
     rdfs:label      "Relationship" ;
     rdfs:comment
                     "used to describe directed relationship between Elements source and sink should be mapped to subject and object of the statement"
@@ -135,12 +131,6 @@ arch:technique
 # used to extend for custom relations
 # and those should be used as rdf:predicate in statements - arch:Relation
 
-arch:RelType
-    a               owl:Class ;
-    rdfs:subClassOf rdf:Property ;
-    rdfs:label      "relationType"@en ;
-.
-
 arch:preferenceSource
     a           owl:ObjectProperty ;
     rdfs:label  "preferenceSource" ;
@@ -166,7 +156,7 @@ arch:preferredRelationship
     a           owl:ObjectProperty ;
     rdfs:label  "preferredRelationship" ;
     rdfs:domain arch:RelationshipPreference ;
-    rdfs:range  arch:RelType
+    rdfs:range  owl:Class ;
 .
 
 
