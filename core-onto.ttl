@@ -131,6 +131,20 @@ arch:technique
 # used to extend for custom relations
 # and those should be used as rdf:predicate in statements - arch:Relation
 
+arch:relSource
+    a           owl:ObjectProperty ;
+    rdfs:label  "relSource" ;
+    rdfs:domain arch:Relationship ;
+    rdfs:range  arch:Concept
+.
+
+arch:relTarget
+    a           owl:ObjectProperty ;
+    rdfs:label  "relTarget" ;
+    rdfs:domain arch:Relationship ;
+    rdfs:range  arch:Concept
+.
+
 arch:preferenceSource
     a           owl:ObjectProperty ;
     rdfs:label  "preferenceSource" ;
@@ -138,9 +152,9 @@ arch:preferenceSource
     rdfs:range  arch:Concept
 .
 
-arch:preferenceSink
+arch:preferenceTarget
     a           owl:ObjectProperty ;
-    rdfs:label  "preferenceSink" ;
+    rdfs:label  "preferenceTarget" ;
     rdfs:domain arch:RelationshipPreference ;
     rdfs:range  arch:Concept
 .
